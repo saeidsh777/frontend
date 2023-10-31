@@ -66,7 +66,7 @@ export default function Login() {
           <div className="login">
             <span className="login__title">ورود به حساب کاربری</span>
             <span className="login__subtitle">
-              خوشحالیم دوباره میبینیمت دوست عزیز :)
+              خوشحالیم دوباره میبینیمت دوست عزیز :) 
             </span>
             <div className="login__new-member">
               <span className="login__new-member-text">کاربر جدید هستید؟</span>
