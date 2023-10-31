@@ -1,0 +1,31 @@
+.success {
+  border: 2px solid rgb(139, 200, 139) !important;
+  animation: out .5s linear;
+  -webkit-animation: out .1s linear;
+}
+@keyframes out {
+  0% {
+    outline: 0 solid rgba(0, 128, 0, 0.512);
+    opacity: 1;
+  }
+  100% {
+    outline: 10px solid rgba(0, 128, 0, 0.516);
+    opacity: 0;
+  }
+}
+
+.error {
+    border: 2px solid rgb(239, 13, 13) !important;
+    animation: outin .1s linear;
+    -webkit-animation: outin .1s linear;
+}
+@keyframes outin {
+  0% {
+    outline: 10px solid rgba(255, 0, 0, 0.5);
+    opacity: 1;
+  }
+  100% {
+    outline: 0 solid rgba(0, 128, 0, 0.516);
+    opacity: 0;
+  }
+}
