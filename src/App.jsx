@@ -11,6 +11,8 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
   const [userInfos, setUserInfos] = useState(null);
+  const [clickBe, setClickBe] = useState(false);
+
   const router = useRoutes(routes);
 
   const login = (userInfos, token) => {
@@ -46,12 +48,10 @@ export default function App() {
       }
     }
   };
-  useEffect(() => {
-    autoLogin()
-  }, []);
 
-  // useEffect(() => {
-  // }, [token]);
+  useEffect(() => {
+    autoLogin();
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -63,6 +63,8 @@ export default function App() {
         baseURL,
         login,
         logout,
+        clickBe,
+        setClickBe,
       }}
     >
       {router}

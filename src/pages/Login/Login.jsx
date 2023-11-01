@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -7,12 +7,11 @@ import Input from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import { useForm } from "../../hooks/useForm";
 import AuthContext from "../../context/AuthContext";
+
 import "./Login.css";
 
 export default function Login() {
   const authContext = useContext(AuthContext);
-  console.log(authContext);
-
   const [formState, onValidHandled] = useForm(
     {
       username: {
@@ -26,11 +25,9 @@ export default function Login() {
     },
     false
   );
-  console.log(formState);
 
   const onLogin = (e) => {
     e.preventDefault();
-
     let userPass = {
       identifier: formState.inputs.username.value,
       password: formState.inputs.password.value,
@@ -52,6 +49,10 @@ export default function Login() {
           JSON.stringify({ token: result.accessToken })
         );
         authContext.autoLogin();
+        authContext.setClickBe(true);
+        setTimeout(() => {
+          authContext.setClickBe(false);
+        }, 5000);
       });
   };
 
@@ -59,6 +60,7 @@ export default function Login() {
     <>
       <Topbar />
       <Navbar />
+
       {authContext.isLoggedIn ? (
         <Navigate to="/" />
       ) : (
