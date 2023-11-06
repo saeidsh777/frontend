@@ -30,7 +30,6 @@ export default function CourseInfo() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setSessions(result.sessions);
         setPageInfos(result);
         setComments(result.comments);
@@ -56,7 +55,6 @@ export default function CourseInfo() {
       <Topbar />
       <Navbar />
       <Breadcrumb links={links} />
-      {console.log(pageInfos)}
       <section className="course-info">
         <div className="container">
           <div className="row">
@@ -240,33 +238,31 @@ export default function CourseInfo() {
                   <div className="introduction__topic">
                     <Accordion defaultActiveKey="">
                       {sessions.map((session, index) => (
-                        <>
-                          <Accordion.Item key={session._id} eventKey={index}>
-                            <Accordion.Header>
-                              {"فصل " + (index + 1)}
-                            </Accordion.Header>
+                        <Accordion.Item key={session._id} eventKey={index}>
+                          <Accordion.Header>
+                            {"فصل " + (index + 1)}
+                          </Accordion.Header>
 
-                            <Accordion.Body className="accordion-body introduction__accordion-body">
-                              <div className="introduction__accordion-right">
-                                <span className="introduction__accordion-count">
-                                  1
-                                </span>
-                                <i className="fab fa-youtube introduction__accordion-icon"></i>
-                                <a
-                                  href="#"
-                                  className="introduction__accordion-link"
-                                >
-                                  {session.title}
-                                </a>
-                              </div>
-                              <div className="introduction__accordion-left">
-                                <span className="introduction__accordion-time">
-                                  {session.time}
-                                </span>
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
-                        </>
+                          <Accordion.Body className="accordion-body introduction__accordion-body">
+                            <div className="introduction__accordion-right">
+                              <span className="introduction__accordion-count">
+                                1
+                              </span>
+                              <i className="fab fa-youtube introduction__accordion-icon"></i>
+                              <a
+                                href="#"
+                                className="introduction__accordion-link"
+                              >
+                                {session.title}
+                              </a>
+                            </div>
+                            <div className="introduction__accordion-left">
+                              <span className="introduction__accordion-time">
+                                {session.time}
+                              </span>
+                            </div>
+                          </Accordion.Body>
+                        </Accordion.Item>
                       ))}
                     </Accordion>
                   </div>

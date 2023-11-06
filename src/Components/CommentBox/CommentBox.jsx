@@ -2,9 +2,34 @@ import "./CommentBox.css";
 import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function CommentBox({ comments }) {
   const authContext = useContext(AuthContext);
+  const [newComment, setNewComment] = useState("");
+  const { courseName } = useParams();
+
+  const onChangeHandler = (e) => {
+    setNewComment(e.target.value);
+  };
+
+  const commentSubmit = () => {
+    const getToken = JSON.parse(localStorage.getItem("user")).token;
+    fetch(`${authContext.baseURL}comments`, {
+      method: "POST",
+      headers: {
+        'Authorization': `Bearer ${getToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        body: newComment,
+        courseShortName: courseName,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  };
 
   return (
     <>
@@ -118,16 +143,25 @@ export default function CommentBox({ comments }) {
               </div>
               <div className="comments__respond-content">
                 <div className="comments__respond-title">دیدگاه شما *</div>
-                <textarea className="comments__score-input-respond"></textarea>
+                <textarea
+                  className="comments__score-input-respond"
+                  onChange={(e) => onChangeHandler(e)}
+                >
+                  {newComment}
+                </textarea>
               </div>
-              <button type="submit" className="comments__respond-btn">
+              <button
+                type="submit"
+                className="comments__respond-btn"
+                onClick={commentSubmit}
+              >
                 ارسال
               </button>
             </div>
           </>
         ) : (
           <div className="alert alert-danger mt-5">
-            برای ثبت کامنت در دوره <Link to='/login'>ثبت نام کنید</Link>{" "}
+            برای ثبت کامنت در دوره <Link to="/login">ثبت نام کنید</Link>{" "}
           </div>
         )}
       </div>
