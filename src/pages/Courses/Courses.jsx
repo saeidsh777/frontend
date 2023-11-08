@@ -4,10 +4,21 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Footer from "../../Components/Footer/Footer";
 import CourseBox from "../../Components/CourseBox/CourseBox";
+import AuthContext from "../../context/AuthContext";
+import { useContext, useEffect, useState } from "react";
 
 import "./Courses.css";
 
 export default function Courses() {
+  const authContext = useContext(AuthContext);
+  const [allCourses, setAllCourses] = useState([]);
+
+  useEffect(() => {
+    fetch(`${authContext.baseURL}courses`)
+      .then((res) => res.json())
+      .then((result) => setAllCourses(result));
+  }, []);
+
   const links = [
     { id: 1, title: "خانه", to: "/" },
     {
@@ -32,16 +43,13 @@ export default function Courses() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
+                {allCourses.map((course) => (
+                  <CourseBox key={course._id} {...course} />
+                ))}
               </div>
             </div>
           </div>
-          <PaginationBasic className="pagination"/>
+          {allCourses.length && <PaginationBasic className="pagination" />}
         </div>
       </section>
 
@@ -62,9 +70,7 @@ const PaginationBasic = () => {
   }
   return (
     <div>
-      <Pagination size="lg">
-        {items}
-      </Pagination>
+      <Pagination size="lg">{items}</Pagination>
     </div>
   );
 };

@@ -1,13 +1,25 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-
-import "./Category.css";
+import { useParams } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
 
+import "./Category.css";
+
 export default function Category() {
+  const authContext = useContext(AuthContext);
+  const { categoryName } = useParams();
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    fetch(`${authContext.baseURL}courses/category/${categoryName}`)
+      .then((res) => res.json())
+      .then((result) => setCategory(result));
+  }, [categoryName]);
+
   return (
     <>
       <Topbar />
@@ -67,15 +79,18 @@ export default function Category() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
+                {category.length ? (
+                  category.map((categor) => (
+                    <CourseBox key={categor._id} {...categor} />
+                  ))
+                ) : (
+                  <div>نیست</div>
+                )}
               </div>
             </div>
           </div>
 
           <Pagination />
-
         </div>
       </section>
 

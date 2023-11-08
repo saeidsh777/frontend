@@ -24,7 +24,6 @@ export default function Navbar() {
               className="main-header__logo"
               alt="لوگوی سبزلرن"
             />
-
             <ul className="main-header__menu">
               <li className="main-header__item">
                 <Link to="/" className="main-header__link">
@@ -34,12 +33,18 @@ export default function Navbar() {
 
               {allMenu.map((item) => (
                 <li key={item._id} className="main-header__item">
-                  <Link href="#" className="main-header__link">
+                  <Link
+                    to={`/category-info/${item.href}`}
+                    className="main-header__link"
+                  >
                     {item.title}
                     <i className="fas fa-angle-down main-header__link-icon"></i>
                     <ul className="main-header__dropdown">
                       {item.submenus.map((submenuItem) => (
-                        <li key={submenuItem._id} className="main-header__dropdown-item">
+                        <li
+                          key={submenuItem._id}
+                          className="main-header__dropdown-item"
+                        >
                           <Link
                             to={submenuItem.href}
                             className="main-header__dropdown-link"
@@ -52,7 +57,6 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
-              
             </ul>
           </div>
 
