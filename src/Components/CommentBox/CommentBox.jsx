@@ -146,8 +146,8 @@ export default function CommentBox({ comments }) {
                 <textarea
                   className="comments__score-input-respond"
                   onChange={(e) => onChangeHandler(e)}
+                  value={newComment}
                 >
-                  {newComment}
                 </textarea>
               </div>
               <button

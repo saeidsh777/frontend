@@ -1,9 +1,21 @@
 import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import AuthContext from "../../context/AuthContext";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./LastCourses.css";
 
 export default function LastCourses() {
+  const authContext = useContext(AuthContext);
+  const [getLastCourses, setGetLastCourses] = useState([]);
+
+  useEffect(() => {
+    fetch(`${authContext.baseURL}courses`)
+      .then((res) => res.json())
+      .then((result) => setGetLastCourses(result));
+  }, []);
+
   return (
     <>
       <div className="courses">
@@ -18,12 +30,9 @@ export default function LastCourses() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
+                {getLastCourses.slice(0, 6).map((course) => (
+                  <CourseBox key={course._id} {...course} />
+                ))}
               </div>
             </div>
           </div>
