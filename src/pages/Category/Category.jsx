@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import Topbar from "../../Components/Topbar/Topbar";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import Topbar from "../../Components/Topbar/Topbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
+import Footer from "../../Components/Footer/Footer";
 
 import "./Category.css";
 

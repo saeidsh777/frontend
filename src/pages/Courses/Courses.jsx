@@ -1,4 +1,3 @@
-import Pagination from "react-bootstrap/Pagination";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
@@ -6,12 +5,16 @@ import Footer from "../../Components/Footer/Footer";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import AuthContext from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
+import Pagination from "../../Components/Pagination/Pagination";
+import { useParams } from "react-router-dom";
 
 import "./Courses.css";
 
 export default function Courses() {
   const authContext = useContext(AuthContext);
   const [allCourses, setAllCourses] = useState([]);
+  const [coursePage, setCoursePage] = useState([]);
+  const {page} = useParams()
 
   useEffect(() => {
     fetch(`${authContext.baseURL}courses`)
@@ -43,13 +46,22 @@ export default function Courses() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                {allCourses.map((course) => (
+                {coursePage.map((course) => (
                   <CourseBox key={course._id} {...course} />
                 ))}
               </div>
             </div>
           </div>
-          {allCourses.length && <PaginationBasic className="pagination" />}
+          {allCourses.length && (
+            <Pagination
+              allCourses={allCourses}
+              setCoursePage={setCoursePage}
+              page={page}
+              count={3}
+              className="pagination"
+              src={"/courses/"}
+            />
+          )}
         </div>
       </section>
 
@@ -58,19 +70,20 @@ export default function Courses() {
   );
 }
 
-const PaginationBasic = () => {
-  let active = 1;
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>
-    );
-  }
-  return (
-    <div>
-      <Pagination size="lg">{items}</Pagination>
-    </div>
-  );
-};
+// const PaginationBasic = () => {
+//   let active = 1;
+//   let items = [];
+
+//   for (let number = 1; number <= 5; number++) {
+//     items.push(
+//       <Pagination.Item key={number} active={number === active}>
+//         {number}
+//       </Pagination.Item>
+//     );
+//   }
+//   return (
+//     <div>
+//       <Pagination size="lg">{items}</Pagination>
+//     </div>
+//   );
+// };
