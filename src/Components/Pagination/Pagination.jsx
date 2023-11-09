@@ -23,7 +23,7 @@ export default function Pagination({
       <ul className="courses__pagination-list">
         <li className="courses__pagination-item">
           <Link
-            to={`${src + (Number(page) - 1)}`}
+            to={`${Number(page) === 1 ? src + "1" : src + (Number(page) - 1)}`}
             className="courses__pagination-link"
           >
             <i className="fas fa-long-arrow-alt-right courses__pagination-icon"></i>
@@ -49,7 +49,9 @@ export default function Pagination({
 
         <li className="courses__pagination-item">
           <Link
-            to={`${src + (Number(page) + 1)}`}
+            to={`${
+              Number(page) === count ? src + count : src + (Number(page) + 1)
+            }`}
             className="courses__pagination-link"
           >
             <i className="fas fa-long-arrow-alt-left courses__pagination-icon"></i>
