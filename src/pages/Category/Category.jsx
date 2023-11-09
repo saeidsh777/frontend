@@ -11,8 +11,11 @@ import "./Category.css";
 
 export default function Category() {
   const authContext = useContext(AuthContext);
-  const { categoryName } = useParams();
+
+  const { categoryName,page } = useParams();
   const [category, setCategory] = useState([]);
+  const [coursePage, setCoursePage] = useState([]);
+
 
   useEffect(() => {
     fetch(`${authContext.baseURL}courses/category/${categoryName}`)
@@ -79,8 +82,8 @@ export default function Category() {
           <div className="courses-content">
             <div className="container">
               <div className="row">
-                {category.length ? (
-                  category.map((categor) => (
+                {coursePage.length ? (
+                  coursePage.map((categor) => (
                     <CourseBox key={categor._id} {...categor} />
                   ))
                 ) : (
@@ -90,7 +93,14 @@ export default function Category() {
             </div>
           </div>
 
-          <Pagination />
+          <Pagination
+            allCourses={category}
+            setCoursePage={setCoursePage}
+            page={page}
+            count={3}
+            className="pagination"
+            src={`/category-info/${categoryName}/`}
+          />
         </div>
       </section>
 

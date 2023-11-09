@@ -14,7 +14,7 @@ export default function Courses() {
   const authContext = useContext(AuthContext);
   const [allCourses, setAllCourses] = useState([]);
   const [coursePage, setCoursePage] = useState([]);
-  const {page} = useParams()
+  const { page } = useParams();
 
   useEffect(() => {
     fetch(`${authContext.baseURL}courses`)
