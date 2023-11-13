@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -11,10 +12,15 @@ import "./Category.css";
 
 export default function Category() {
   const authContext = useContext(AuthContext);
-
   const { categoryName, page } = useParams();
   const [category, setCategory] = useState([]);
+  const [filterCategory, setFilterCategory] = useState([]);
   const [coursePage, setCoursePage] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setFilterCategory(category);
+  }, [category]);
 
   useEffect(() => {
     fetch(`${authContext.baseURL}courses/category/${categoryName}`)
@@ -22,11 +28,42 @@ export default function Category() {
       .then((result) => setCategory(result));
   }, [categoryName]);
 
+  const onChangeSelection = (e) => {
+    let selectBoxValue = e.target.value;
+    let filteredCategory = null;
+    let newUrl = location.pathname.replace(/\/\w+$/g, "/1");
+    navigate(newUrl);
+
+    switch (selectBoxValue) {
+      case "default": {
+        setFilterCategory(category);
+        break;
+      }
+      case "free": {
+        filteredCategory = category.filter((item) => item.price == 0);
+        setFilterCategory(filteredCategory);
+        break;
+      }
+      case "frist": {
+        filteredCategory = [...category].reverse();
+        setFilterCategory(filteredCategory);
+        break;
+      }
+      case "mony": {
+        filteredCategory = category.filter((item) => item.price > 0);
+        setFilterCategory(filteredCategory);
+        break;
+      }
+      default: {
+        setFilterCategory(category);
+      }
+    }
+  };
+
   return (
     <>
       <Topbar />
       <Navbar />
-
       <section className="courses">
         <div className="container">
           <div className="courses-top-bar">
@@ -42,13 +79,12 @@ export default function Category() {
                 <select
                   className="selection"
                   defaultValue={"مرتب سازی پیش فرض"}
+                  onChange={(e) => onChangeSelection(e)}
                 >
-                  <option>مرتب سازی پیش فرض</option>
-                  <option>مربت سازی بر اساس محبوبیت</option>
-                  <option>مربت سازی بر اساس امتیاز</option>
-                  <option>مربت سازی بر اساس آخرین</option>
-                  <option>مربت سازی بر اساس ارزان ترین</option>
-                  <option>مربت سازی بر اساس گران ترین</option>
+                  <option value={"default"}>مرتب سازی پیش فرض</option>
+                  <option value={"free"}>مرتب سازی رایگان </option>
+                  <option value={"frist"}>مربت سازی بر اساس اولین</option>
+                  <option value={"mony"}>مربت سازی بر اساس پولی</option>
                 </select>
               </div>
             </div>
@@ -80,7 +116,7 @@ export default function Category() {
           </div>
 
           <Pagination
-            allCourses={category}
+            allCourses={filterCategory}
             setCoursePage={setCoursePage}
             page={page}
             count={3}
