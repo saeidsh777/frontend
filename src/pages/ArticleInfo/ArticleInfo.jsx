@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Footer from "../../Components/Footer/Footer";
+import AuthContext from "../../context/AuthContext";
+import CommentBox from "../../Components/CommentBox/CommentBox";
+import { useParams } from "react-router-dom";
 
 import "./ArticleInfo.css";
-import CommentBox from "../../Components/CommentBox/CommentBox";
 
 export default function ArticleInfo() {
+  const { articleName } = useParams();
+  const authContext = useContext(AuthContext);
+  const [articleInfo, setArticleInfo] = useState({});
+
+  useEffect(() => {
+    fetch(`${authContext.baseURL}articles/${articleName}`)
+      .then((res) => res.json())
+      .then((result) => setArticleInfo(result));
+  }, []);
   const links = [
     { id: 1, title: "خانه", to: "/" },
     {
@@ -32,10 +43,7 @@ export default function ArticleInfo() {
           <div className="row">
             <div className="col-8">
               <div className="article">
-                <h1 className="article__title">
-                  معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش
-                  رایگان
-                </h1>
+                <h1 className="article__title">{articleInfo.title}</h1>
                 <div className="article__header">
                   <div className="article-header__category article-header__item">
                     <i className="far fa-folder article-header__icon"></i>
@@ -240,7 +248,7 @@ export default function ArticleInfo() {
                   </div>
                 </div>
               </div>
-              <CommentBox />
+              {/* <CommentBox /> */}
             </div>
 
             <div className="col-4">

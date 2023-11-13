@@ -16,7 +16,7 @@ export default function Pagination({
     let endIndex = page * count;
     let startIndex = endIndex - count;
     setCoursePage(allCourses.slice(startIndex, endIndex));
-  }, [page,allCourses]);
+  }, [page, allCourses]);
 
   return (
     <div className="courses-pagination">

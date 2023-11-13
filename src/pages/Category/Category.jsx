@@ -12,10 +12,9 @@ import "./Category.css";
 export default function Category() {
   const authContext = useContext(AuthContext);
 
-  const { categoryName,page } = useParams();
+  const { categoryName, page } = useParams();
   const [category, setCategory] = useState([]);
   const [coursePage, setCoursePage] = useState([]);
-
 
   useEffect(() => {
     fetch(`${authContext.baseURL}courses/category/${categoryName}`)
@@ -40,30 +39,17 @@ export default function Category() {
               </div>
 
               <div className="courses-top-bar__selection">
-                <span className="courses-top-bar__selection-title">
-                  مرتب سازی پیش فرض
-                  <i className="fas fa-angle-down courses-top-bar__selection-icon"></i>
-                </span>
-                <ul className="courses-top-bar__selection-list">
-                  <li className="courses-top-bar__selection-item courses-top-bar__selection-item--active">
-                    مرتب سازی پیش فرض
-                  </li>
-                  <li className="courses-top-bar__selection-item">
-                    مربت سازی بر اساس محبوبیت
-                  </li>
-                  <li className="courses-top-bar__selection-item">
-                    مربت سازی بر اساس امتیاز
-                  </li>
-                  <li className="courses-top-bar__selection-item">
-                    مربت سازی بر اساس آخرین
-                  </li>
-                  <li className="courses-top-bar__selection-item">
-                    مربت سازی بر اساس ارزان ترین
-                  </li>
-                  <li className="courses-top-bar__selection-item">
-                    مربت سازی بر اساس گران ترین
-                  </li>
-                </ul>
+                <select
+                  className="selection"
+                  defaultValue={"مرتب سازی پیش فرض"}
+                >
+                  <option>مرتب سازی پیش فرض</option>
+                  <option>مربت سازی بر اساس محبوبیت</option>
+                  <option>مربت سازی بر اساس امتیاز</option>
+                  <option>مربت سازی بر اساس آخرین</option>
+                  <option>مربت سازی بر اساس ارزان ترین</option>
+                  <option>مربت سازی بر اساس گران ترین</option>
+                </select>
               </div>
             </div>
 

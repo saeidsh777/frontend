@@ -24,6 +24,10 @@
   padding: 1rem 0;
 }
 
+.course-box__rating {
+  display: flex;
+}
+
 .course-box__rating-teacher {
   display: flex;
   align-items: center;

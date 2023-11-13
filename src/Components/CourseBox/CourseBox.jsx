@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import "./CourseBox.css";
 
 export default function CourseBox(props) {
-
   const [isShowImg, setIsShowImg] = useState(false);
 
   return (
-    <Link to={`/course-info/${props.shortName}`} className="col-4">
+    <Link
+      to={`/course-info/${props.shortName}`}
+      className={`${props.nocoll ? "" : "col-4"}`}
+    >
       <div className="course-box">
         <Link to={`/course-info/${props.shortName}`}>
           <img
@@ -21,14 +23,17 @@ export default function CourseBox(props) {
           {!isShowImg && <ShimmerImg />}
         </Link>
         <div className="course-box__main">
-          <Link to={`/course-info/${props.shortName}`} className="course-box__title">
+          <Link
+            to={`/course-info/${props.shortName}`}
+            className="course-box__title"
+          >
             {props.name}
           </Link>
 
           <div className="course-box__rating-teacher">
             <div className="course-box__teacher">
               <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
-              <Link to='/' className="course-box__teacher-link">
+              <Link to="/" className="course-box__teacher-link">
                 {props.creator}
               </Link>
             </div>
@@ -73,7 +78,10 @@ export default function CourseBox(props) {
         </div>
 
         <div className="course-box__footer">
-          <Link to={`/course-info/${props.shortName}`} className="course-box__footer-link">
+          <Link
+            to={`/course-info/${props.shortName}`}
+            className="course-box__footer-link"
+          >
             مشاهده اطلاعات
             <i className="fas fa-arrow-left course-box__footer-icon"></i>
           </Link>

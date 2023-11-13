@@ -4,6 +4,15 @@
   margin: 4rem 0;
 }
 
+.selection{
+  background: none !important;
+  outline: none;
+  border: 1px solid black;
+}
+.selection option{
+  background: none !important;
+}
+
 .courses-top-bar {
   display: flex;
   justify-content: space-between;

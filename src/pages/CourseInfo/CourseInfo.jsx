@@ -17,6 +17,7 @@ export default function CourseInfo() {
   const [pageInfos, setPageInfos] = useState({});
   const [sessions, setSessions] = useState([]);
   const [comments, setComments] = useState([]);
+  const [courseTe, setCourseTe] = useState({});
 
   useEffect(() => {
     const localStorageToken = JSON.parse(localStorage.getItem("user"));
@@ -33,6 +34,7 @@ export default function CourseInfo() {
         setSessions(result.sessions);
         setPageInfos(result);
         setComments(result.comments);
+        setCourseTe(result.creator);
       });
   }, []);
 
@@ -279,9 +281,7 @@ export default function CourseInfo() {
                         className="techer-details__header-img"
                       />
                       <div className="techer-details__header-titles">
-                        <a href="#" className="techer-details__header-link">
-                          محمدامین سعیدی راد
-                        </a>
+                        <a href="#" className="techer-details__header-link"></a>
                         <span className="techer-details__header-skill">
                           Front End & Back End Developer
                         </span>
