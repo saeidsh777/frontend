@@ -16,6 +16,7 @@ export default function Category() {
   const [category, setCategory] = useState([]);
   const [filterCategory, setFilterCategory] = useState([]);
   const [coursePage, setCoursePage] = useState([]);
+  const [searchCourses, setSearchCourses] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +61,14 @@ export default function Category() {
     }
   };
 
+  const onChangeSearchInput = (e) => {
+    setSearchCourses(e.target.value);
+    let allSearchCourses = category.filter(
+      (item) => item.name.includes(e.target.value)
+    );
+    setFilterCategory(allSearchCourses);
+  };
+
   return (
     <>
       <Topbar />
@@ -95,6 +104,8 @@ export default function Category() {
                   type="text"
                   className="courses-top-bar__input"
                   placeholder="جستجوی دوره ..."
+                  value={searchCourses}
+                  onChange={(e) => onChangeSearchInput(e)}
                 />
                 <i className="fas fa-search courses-top-bar__search-icon"></i>
               </form>
@@ -109,7 +120,7 @@ export default function Category() {
                     <CourseBox key={categor._id} {...categor} />
                   ))
                 ) : (
-                  <div>نیست</div>
+                  <div className="alert alert-danger text-center mt-5">دروه با این عنوان وجود ندارد</div>
                 )}
               </div>
             </div>

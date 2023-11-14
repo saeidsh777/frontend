@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import AuthContext from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 import "./Topbar.css";
 
-export default function Topbar() {
+// eslint-disable-next-line react-refresh/only-export-components
+export default memo(function Topbar() {
   const authContext = useContext(AuthContext);
   const [menuTopbar, setMenuTopbar] = useState([]);
 
@@ -54,4 +55,4 @@ export default function Topbar() {
       </div>
     </div>
   );
-}
+});
