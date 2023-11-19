@@ -18,7 +18,7 @@ export default function Topbar() {
         setAdminInfo(data);
         setAdminNotifications(data.notifications);
       });
-  }, [seeNotification]);
+  }, []);
 
   function seeNotification(notficationID) {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -29,8 +29,18 @@ export default function Topbar() {
       },
     })
       .then((res) => res.json())
-      .then((err) => {
-        console.log(err);
+      .then((result) => {
+        fetch(`http://localhost:4000/v1/auth/me`, {
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setAdminInfo(data);
+            setAdminNotifications(data.notifications);
+          });
       });
   }
 
@@ -74,7 +84,7 @@ export default function Topbar() {
                       </span>
                       <label className="switch">
                         <a
-                          href=" "
+                          href="javascript:void(0)"
                           onClick={() => seeNotification(notification._id)}
                         >
                           دیدم
