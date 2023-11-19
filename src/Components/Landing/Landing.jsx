@@ -1,10 +1,10 @@
 import Typewriter from "typewriter-effect";
 import LandingCounter from "../LandingCounter/LandingCounter";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Landing.css";
 
 export default function Landing() {
-
   return (
     <section className="landing">
       <div className="container">
@@ -35,7 +35,10 @@ export default function Landing() {
             placeholder="چه چیزی دوست داری یاد بگیری ..."
           />
           <button className="landing__searchbar-btn" type="submit">
-            <i className="fas fa-search landing__searchbar-icon"></i>
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="landing__searchbar-icon"
+            />
           </button>
         </div>
         <div className="landing-status">
@@ -97,7 +100,9 @@ export default function Landing() {
               </g>
             </svg>
             <LandingCounter count={2000} />
-            <span className="landing-status__text">دقیقه آموزش تولید کردیم</span>
+            <span className="landing-status__text">
+              دقیقه آموزش تولید کردیم
+            </span>
           </div>
         </div>
       </div>

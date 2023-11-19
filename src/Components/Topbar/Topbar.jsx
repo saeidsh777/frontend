@@ -3,6 +3,8 @@ import AuthContext from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 import "./Topbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default memo(function Topbar() {
@@ -42,13 +44,16 @@ export default memo(function Topbar() {
               <a href="#" className="top-bar__email-text top-bar__link">
                 sabzlearn@gmail.com
               </a>
-              <i className="fas fa-envelope top-bar__email-icon"></i>
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="top-bar__email-icon"
+              />
             </div>
             <div className="top-bar__phone">
               <a href="#" className="top-bar__phone-text top-bar__link">
                 09921558293
               </a>
-              <i className="fas fa-phone top-bar__phone-icon"></i>
+              <FontAwesomeIcon icon={faPhone} className="top-bar__phone-icon" />
             </div>
           </div>
         </div>

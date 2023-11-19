@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import ShimmerImg from "../ShimmerImg/ShimmerImg";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChalkboardTeacher,
+  faUsers,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 import "./CourseBox.css";
 
@@ -32,7 +38,10 @@ export default function CourseBox(props) {
 
           <div className="course-box__rating-teacher">
             <div className="course-box__teacher">
-              <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
+              <FontAwesomeIcon
+                icon={faChalkboardTeacher}
+                className="course-box__teacher-icon"
+              />
               <Link to="/" className="course-box__teacher-link">
                 {props.creator}
               </Link>
@@ -68,7 +77,10 @@ export default function CourseBox(props) {
 
           <div className="course-box__status">
             <div className="course-box__users">
-              <i className="fas fa-users course-box__users-icon"></i>
+              <FontAwesomeIcon
+                icon={faUsers}
+                className="course-box__users-icon"
+              />
               <span className="course-box__users-text">500</span>
             </div>
             <span className="course-box__price">
@@ -83,7 +95,10 @@ export default function CourseBox(props) {
             className="course-box__footer-link"
           >
             مشاهده اطلاعات
-            <i className="fas fa-arrow-left course-box__footer-icon"></i>
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              className="course-box__footer-icon"
+            />
           </Link>
         </div>
       </div>

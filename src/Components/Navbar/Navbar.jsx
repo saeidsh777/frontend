@@ -3,6 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Navbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDown,
+  faSearch,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const authContext = useContext(AuthContext);
@@ -38,7 +44,10 @@ export default function Navbar() {
                     className="main-header__link"
                   >
                     {item.title}
-                    <i className="fas fa-angle-down main-header__link-icon"></i>
+                    <FontAwesomeIcon
+                      icon={faAngleDown}
+                      className="main-header__link-icon"
+                    />
                     <ul className="main-header__dropdown">
                       {item.submenus.map((submenuItem) => (
                         <li
@@ -62,10 +71,16 @@ export default function Navbar() {
 
           <div className="main-header__left">
             <a href="#" className="main-header__search-btn">
-              <i className="fas fa-search main-header__search-icon"></i>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="main-header__search-icon"
+              />
             </a>
             <a href="#" className="main-header__cart-btn">
-              <i className="fas fa-shopping-cart main-header__cart-icon"></i>
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                className="main-header__cart-icon"
+              />
             </a>
             {authContext.isLoggedIn ? (
               <Link to="/" className="main-header__profile">

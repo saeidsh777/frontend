@@ -9,6 +9,12 @@ import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "../../Components/Footer/Footer";
 
 import "./Category.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAlignLeft,
+  faBorderAll,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Category() {
   const authContext = useContext(AuthContext);
@@ -63,8 +69,8 @@ export default function Category() {
 
   const onChangeSearchInput = (e) => {
     setSearchCourses(e.target.value);
-    let allSearchCourses = category.filter(
-      (item) => item.name.includes(e.target.value)
+    let allSearchCourses = category.filter((item) =>
+      item.name.includes(e.target.value)
     );
     setFilterCategory(allSearchCourses);
   };
@@ -78,10 +84,16 @@ export default function Category() {
           <div className="courses-top-bar">
             <div className="courses-top-bar__right">
               <div className="courses-top-bar__row-btn courses-top-bar__icon--active">
-                <i className="fas fa-border-all courses-top-bar__icon"></i>
+                <FontAwesomeIcon
+                  icon={faBorderAll}
+                  className="courses-top-bar__icon"
+                />
               </div>
               <div className="courses-top-bar__column-btn">
-                <i className="fas fa-align-left courses-top-bar__icon"></i>
+                <FontAwesomeIcon
+                  icon={faAlignLeft}
+                  className="courses-top-bar__icon"
+                />
               </div>
 
               <div className="courses-top-bar__selection">
@@ -107,7 +119,10 @@ export default function Category() {
                   value={searchCourses}
                   onChange={(e) => onChangeSearchInput(e)}
                 />
-                <i className="fas fa-search courses-top-bar__search-icon"></i>
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="courses-top-bar__search-icon"
+                />
               </form>
             </div>
           </div>
@@ -120,7 +135,9 @@ export default function Category() {
                     <CourseBox key={categor._id} {...categor} />
                   ))
                 ) : (
-                  <div className="alert alert-danger text-center mt-5">دروه با این عنوان وجود ندارد</div>
+                  <div className="alert alert-danger text-center mt-5">
+                    دروه با این عنوان وجود ندارد
+                  </div>
                 )}
               </div>
             </div>

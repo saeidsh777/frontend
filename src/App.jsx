@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useRoutes } from "react-router-dom";
 import routes from "./routes";
 import AuthContext from "./context/AuthContext";
-
 import "./App.css";
 
 const baseURL = "http://localhost:4000/v1/";
