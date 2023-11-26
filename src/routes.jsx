@@ -7,7 +7,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Articles from "./pages/Articles/Articles";
 
-import AdminPanel from "./pages/AdminPanel/index";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import Users from "./pages/AdminPanel/Users/Users";
 import AdminCourses from "./pages/AdminPanel/Courses/Courses";
 import Menus from "./pages/AdminPanel/Menus/Menus";

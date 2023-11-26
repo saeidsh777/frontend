@@ -44,25 +44,29 @@ export default function Navbar() {
                     className="main-header__link"
                   >
                     {item.title}
-                    <FontAwesomeIcon
-                      icon={faAngleDown}
-                      className="main-header__link-icon"
-                    />
-                    <ul className="main-header__dropdown">
-                      {item.submenus.map((submenuItem) => (
-                        <li
-                          key={submenuItem._id}
-                          className="main-header__dropdown-item"
-                        >
-                          <Link
-                            to={submenuItem.href}
-                            className="main-header__dropdown-link"
-                          >
-                            {submenuItem.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    {item.submenus.length > 0 && (
+                      <>
+                        <FontAwesomeIcon
+                          icon={faAngleDown}
+                          className="main-header__link-icon"
+                        />
+                        <ul className="main-header__dropdown">
+                          {item.submenus.map((submenuItem) => (
+                            <li
+                              key={submenuItem._id}
+                              className="main-header__dropdown-item"
+                            >
+                              <Link
+                                to={submenuItem.href}
+                                className="main-header__dropdown-link"
+                              >
+                                {submenuItem.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </Link>
                 </li>
               ))}

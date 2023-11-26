@@ -25,7 +25,6 @@ export default function LastArticles() {
 
         <div className="articles__content">
           <div className="row">
-            {console.log(lastCourses)}
             {lastCourses.slice(0, 3).map((course) => (
               <ArticleBox
                 key={course._id}

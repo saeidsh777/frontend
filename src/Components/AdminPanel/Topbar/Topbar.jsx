@@ -6,18 +6,20 @@ export default function Topbar() {
   const [isShowNotificationsBox, setIsShowNotificationsBox] = useState(false);
 
   useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
-    fetch(`http://localhost:4000/v1/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAdminInfo(data);
-        setAdminNotifications(data.notifications);
-      });
+    if (localStorage.getItem("user")) {
+      const localStorageData = JSON.parse(localStorage.getItem("user"));
+      fetch(`http://localhost:4000/v1/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${localStorageData.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setAdminInfo(data);
+          setAdminNotifications(data.notifications);
+        });
+    }
   }, []);
 
   function seeNotification(notficationID) {

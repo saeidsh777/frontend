@@ -2,7 +2,6 @@ import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import AuthContext from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import "./LastCourses.css";
 

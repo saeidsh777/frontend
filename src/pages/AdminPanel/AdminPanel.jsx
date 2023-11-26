@@ -3,16 +3,18 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../../Components/AdminPanel/Sidebar/Sidebar";
 import Topbar from "../../Components/AdminPanel/Topbar/Topbar";
 
-import "./index.css";
+import "./AdminPanel.css";
 
-export default function index() {
+export default function AdminPanel() {
   return (
     <>
       <div id="content">
         <Sidebar />
         <div id="home" className="col-10">
           <Topbar />
-          <Outlet />
+          <div className="container-fluid" id="home-content">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

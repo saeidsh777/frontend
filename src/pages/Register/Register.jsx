@@ -23,6 +23,10 @@ export default function Register() {
         value: "",
         isValidInput: false,
       },
+      phone: {
+        value: "",
+        isValidInput: false,
+      },
       email: {
         value: "",
         isValidInput: false,
@@ -37,10 +41,10 @@ export default function Register() {
 
   const postForm = (e) => {
     e.preventDefault();
-    console.log(formState);
     let newUser = {
       name: formState.inputs.name.value,
       username: formState.inputs.username.value,
+      phone: formState.inputs.phone.value,
       password: formState.inputs.password.value,
       email: formState.inputs.email.value,
       confirmPassword: formState.inputs.password.value,
@@ -105,6 +109,19 @@ export default function Register() {
                 />
                 <i className="login-form__username-icon fa fa-user"></i>
               </div>
+
+              <div className="login-form__username">
+                <Input
+                  id="phone"
+                  className="login-form__username-input"
+                  type="text"
+                  placeholder="شماره تلفن "
+                  typeName="input"
+                  onValidHandled={onValidHandled}
+                />
+                <i className="login-form__username-icon fa fa-user"></i>
+              </div>
+              
               <div className="login-form__password">
                 <Input
                   id="email"

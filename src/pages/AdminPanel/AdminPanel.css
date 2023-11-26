@@ -4,7 +4,7 @@
   outline: none;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "vazir";
+  font-family: IRANSans;
 }
 a {
   text-decoration: none;
@@ -20,13 +20,13 @@ ul {
 .active-menu {
   position: relative;
   background: #353c50;
-  background: -webkit-gradient(
+  /* background: -webkit-gradient(
     linear,
     left top,
     right top,
     from(#353c50),
     to(rgba(0, 212, 255, 0))
-  );
+  ); */
   background: linear-gradient(90deg, #353c50 0%, rgba(0, 212, 255, 0) 100%);
 }
 .active-menu a {
@@ -99,18 +99,6 @@ ul {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-@font-face {
-  font-family: "vazir";
-  src: url("./../../fonts/Vazir/Vazir.eot");
-  src: url("./../../fonts/Vazir/Vazir.ttf");
-  src: url("./../../fonts/Vazir/Vazir.woff");
-  src: url("./../../fonts/Vazir/Vazir.woff2");
-}
-@font-face {
-  font-family: "lalezar";
-  src: url("./../../fonts/Lalezar-Font/OTF/Lalezar-Regular.otf");
-  src: url("./../../fonts/Lalezar-Font/TTF/Lalezar-Regular.ttf");
-}
 #sidebar {
   background-color: #17203f;
   height: 100vh;
@@ -148,13 +136,13 @@ ul {
 }
 #sidebar .sidebar-menu ul li:hover {
   background: #353c50;
-  background: -webkit-gradient(
+  /* background: -webkit-gradient(
     linear,
     left top,
     right top,
     from(#353c50),
     to(rgba(0, 212, 255, 0))
-  );
+  ); */
   background: linear-gradient(90deg, #353c50 0%, rgba(0, 212, 255, 0) 100%);
 }
 #sidebar .sidebar-menu ul li a {
@@ -402,7 +390,7 @@ ul {
 }
 #home #home-content .home-content-latset-users .home-content-users-title span {
   font-size: 18px;
-  font-family: "lalezar";
+  font-family: IRANSans;
 }
 #home
   #home-content
@@ -431,7 +419,7 @@ ul {
   thead
   tr
   th {
-  font-family: "lalezar";
+  font-family: IRANSans;
   border: none;
   color: #67747e;
   text-align: center;
@@ -560,7 +548,7 @@ ul {
 }
 #home #home-content .home-content-edit .form .input .input-title {
   font-size: 18px;
-  font-family: "lalezar";
+  font-family: IRANSans;
 }
 #home #home-content .home-content-edit .form .bottom-form {
   display: -webkit-box;
@@ -576,7 +564,7 @@ ul {
 }
 #home #home-content .home-content-edit .form .bottom-form .sex .input-title {
   font-size: 18px;
-  font-family: "lalezar";
+  font-family: IRANSans;
 }
 #home #home-content .home-content-edit .form .bottom-form .sex .radios {
   display: -webkit-box;
@@ -699,7 +687,7 @@ ul {
 }
 #delete-modal .delete-modal-title {
   font-size: 20px;
-  font-family: "lalezar";
+  font-family: IRANSans;
   padding: 10px 0;
 }
 #delete-modal .delete-modal-btns button {

@@ -25,6 +25,7 @@ export default function App() {
   const logout = () => {
     setToken(null);
     setUserInfos({});
+    setIsLoggedIn(false);
     localStorage.removeItem("user");
     localStorage.setItem("isLoggedIn", false);
   };
