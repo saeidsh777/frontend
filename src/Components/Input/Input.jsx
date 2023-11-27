@@ -12,6 +12,13 @@ const setValue = (state, action) => {
         isValid: isvalid(state, action),
       };
     }
+    case "CHANGE-INPUT-NO-VALID": {
+      return {
+        ...state,
+        value: action.value,
+        isValid: true,
+      };
+    }
 
     case "CHANGE-AREA": {
       return {
@@ -32,33 +39,28 @@ export default function Input(props) {
     typeInput: props.type,
   });
 
-  const { value} = mainInput
+  const { value } = mainInput;
 
-  const playAudioValid =() => {
-    const audioSuccses = new Audio(
-      "/src/assets/audio/success.mp3"
-    );
-    audioSuccses.play()
-
-  }
-  const playAudioError =() => {
-    const audioSuccses = new Audio(
-      "/src/assets/audio/error.mp3"
-    );
-    audioSuccses.play()
-  }
+  const playAudioValid = () => {
+    const audioSuccses = new Audio("/src/assets/audio/success.mp3");
+    audioSuccses.play();
+  };
+  const playAudioError = () => {
+    const audioSuccses = new Audio("/src/assets/audio/error.mp3");
+    audioSuccses.play();
+  };
 
   useEffect(() => {
-    props.onValidHandled(props.id,value, mainInput.isValid)
-  },[value])
+    props.onValidHandled(props.id, value, mainInput.isValid);
+  }, [value]);
 
   useEffect(() => {
     mainInput.isValid ? playAudioValid() : playAudioError();
-  },[mainInput.isValid])
+  }, [mainInput.isValid]);
 
   return (
     <div>
-      {props.typeName === "input" ? (
+      {props.typeName === "input" && (
         <input
           className={`${props.className} ${
             mainInput.isValid ? "success" : "error"
@@ -70,7 +72,9 @@ export default function Input(props) {
           }}
           value={value}
         />
-      ) : (
+      )}
+
+      {props.typeName === "teaxtarea" && (
         <textarea
           className={`${props.className} ${mainInput.isVali ? ".su" : "e"}`}
           placeholder={props.placeholder}
@@ -79,6 +83,17 @@ export default function Input(props) {
           }
           value={value}
         ></textarea>
+      )}
+      
+      {props.typeName === "input-no-valid" && (
+        <input
+          type={props.type}
+          placeholder={props.placeholder}
+          onChange={(e) => {
+            dispatch({ type: "CHANGE-INPUT-NO-VALID", value: e.target.value });
+          }}
+          value={value}
+        />
       )}
     </div>
   );

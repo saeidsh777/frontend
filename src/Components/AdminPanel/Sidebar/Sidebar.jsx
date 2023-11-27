@@ -68,10 +68,10 @@ export default function Sidebar() {
                   <span>کدهای تخفیف</span>
                 </a>
               </li>
-              <li>
-                <a href="#">
+              <li className={`${param === "category" ? "active-menu" : ""}`}>
+                <Link to="category">
                   <span>دسته‌بندی‌ها</span>
-                </a>
+                </Link>
               </li>
               <li onClick={(e) => logOutHandler(e)}>
                 <a href="#">
