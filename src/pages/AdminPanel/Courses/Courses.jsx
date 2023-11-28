@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import swal from "sweetalert";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
+    getAllCourses();
+  }, []);
+
+  const getAllCourses = () => {
     const localStorageData = localStorage.getItem("user");
     fetch("http://localhost:4000/v1/courses", {
       headers: {
@@ -13,10 +18,39 @@ export default function Courses() {
     })
       .then((res) => res.json())
       .then((allCourses) => {
-        console.log(allCourses);
         setCourses(allCourses);
       });
-  }, []);
+  };
+
+  function removeCourses(courseID) {
+    const localStorageData = localStorage.getItem("user");
+    swal({
+      title: "آیا از حذف مطمئن هستید؟",
+      icon: "warning",
+      buttons: ["خیر", "بلی"],
+    }).then(
+      (result) =>
+        result &&
+        fetch(`http://localhost:4000/v1/courses/${courseID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          res.ok
+            ? swal({
+                title: "حذف شد.",
+                icon: "success",
+                buttons: "اکی",
+              }).then(getAllCourses())
+            : swal({
+                title: "حذف با مشکل مواجه شد.",
+                icon: "error",
+                buttons: "اکی",
+              });
+        })
+    );
+  }
 
   return (
     <>
@@ -57,7 +91,11 @@ export default function Courses() {
                   </button>
                 </td>
                 <td>
-                  <button type="button" className="btn btn-danger delete-btn">
+                  <button
+                    type="button"
+                    className="btn btn-danger delete-btn"
+                    onClick={() => removeCourses(course._id)}
+                  >
                     حذف
                   </button>
                 </td>

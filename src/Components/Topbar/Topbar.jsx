@@ -6,7 +6,6 @@ import "./Topbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default memo(function Topbar() {
   const authContext = useContext(AuthContext);
   const [menuTopbar, setMenuTopbar] = useState([]);

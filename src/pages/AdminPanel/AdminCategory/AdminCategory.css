@@ -4,7 +4,6 @@
 }
 #home .home-title span {
   font-size: 18px;
-  font-family: "lalezar";
   font-size: 22px;
 }
 #home .form {
@@ -52,7 +51,6 @@
 }
 #home .form .input .input-title {
   font-size: 18px;
-  font-family: "lalezar";
 }
 #home .form .bottom-form {
   display: -webkit-box;
@@ -68,7 +66,6 @@
 }
 #home .form .bottom-form .sex .input-title {
   font-size: 18px;
-  font-family: "lalezar";
 }
 #home .form .bottom-form .sex .radios {
   display: -webkit-box;

@@ -41,22 +41,9 @@ export default function Input(props) {
 
   const { value } = mainInput;
 
-  const playAudioValid = () => {
-    const audioSuccses = new Audio("/src/assets/audio/success.mp3");
-    audioSuccses.play();
-  };
-  const playAudioError = () => {
-    const audioSuccses = new Audio("/src/assets/audio/error.mp3");
-    audioSuccses.play();
-  };
-
   useEffect(() => {
     props.onValidHandled(props.id, value, mainInput.isValid);
   }, [value]);
-
-  useEffect(() => {
-    mainInput.isValid ? playAudioValid() : playAudioError();
-  }, [mainInput.isValid]);
 
   return (
     <div>
@@ -84,7 +71,7 @@ export default function Input(props) {
           value={value}
         ></textarea>
       )}
-      
+
       {props.typeName === "input-no-valid" && (
         <input
           type={props.type}
