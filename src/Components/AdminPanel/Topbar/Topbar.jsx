@@ -15,7 +15,6 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setAdminInfo(data);
           setAdminNotifications(data.notifications);
         });
@@ -39,7 +38,6 @@ export default function Topbar() {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setAdminInfo(data);
             setAdminNotifications(data.notifications);
           });
